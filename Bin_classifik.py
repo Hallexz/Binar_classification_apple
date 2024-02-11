@@ -5,9 +5,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 import matplotlib.pyplot as plt
-
-# Определение модели
-
 f = next(iter(train_loader))
 
 input_size = 7
@@ -57,14 +54,10 @@ for epoch in range(num_epochs):
         
 correct = 0
 total = 0
-# Эта строка говорит PyTorch, что в следующем блоке кода не нужно вычислять градиенты. Это полезно, когда вы хотите применить модель (например, для тестирования), но не хотите обновлять ее веса
 with torch.no_grad():
     for inputs, labels in test_loader:
         outputs = model(inputs)
-        # Преобразует выходные данные модели в бинарные предсказания. Если выходное значение больше 0.5, то предсказание становится 1.0, в противном случае - 0.0. 
-        # Это обычно делается в задачах бинарной классификации
         predicted = (outputs > 0.5).float()
-        # Увеличивает счетчик общего количества примеров на размер текущего батча. targets.size(0) возвращает количество примеров в батче.
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 
