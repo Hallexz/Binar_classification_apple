@@ -51,7 +51,8 @@ for epoch in range(num_epochs):
         correct = (predicted == labels).sum().item()
         acc_list.append(correct / total)
     
-        
+
+
 correct = 0
 total = 0
 with torch.no_grad():
